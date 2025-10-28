@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>卷烟订购新模式 - 价位段自选</title>
     <style>
         /* 基础样式 */
@@ -18,10 +18,11 @@
             color: #fff;
             line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
         
         .container {
+            width: 100%;
             max-width: 1000px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.05);
@@ -33,44 +34,45 @@
         /* 头部样式 */
         header {
             text-align: center;
-            padding: 30px 20px;
+            padding: 20px 15px;
             background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
             color: white;
             position: relative;
         }
         
         h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            line-height: 1.3;
         }
         
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             opacity: 0.9;
         }
         
         /* 语音控制区域 */
         .voice-controls {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
         
         .voice-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             color: white;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
         
@@ -88,9 +90,9 @@
         .progress-container {
             width: 100%;
             background: rgba(255, 255, 255, 0.2);
-            height: 8px;
-            margin: 20px 0 0;
-            border-radius: 4px;
+            height: 6px;
+            margin: 15px 0 0;
+            border-radius: 3px;
             overflow: hidden;
         }
         
@@ -98,134 +100,205 @@
             height: 100%;
             background: #ffeb3b;
             width: 10%;
-            border-radius: 4px;
+            border-radius: 3px;
             transition: width 0.5s ease;
         }
         
         /* 故事内容样式 */
         .story-content {
-            padding: 30px;
+            padding: 20px 15px;
             position: relative;
         }
         
         .story-text {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            line-height: 1.7;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
             background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 15px;
+            border-radius: 8px;
         }
         
         /* 选择按钮样式 */
         .choices {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            margin-top: 30px;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 25px;
         }
         
         .choice-btn {
             background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
             color: white;
             border: none;
-            padding: 18px;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             font-weight: 500;
+            text-align: center;
+            min-height: 60px;
         }
         
         .choice-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
         }
         
         .choice-btn.red {
             background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
-            box-shadow: 0 4px 10px rgba(244, 67, 54, 0.3);
+            box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
         }
         
         .choice-btn.red:hover {
-            box-shadow: 0 6px 15px rgba(244, 67, 54, 0.4);
+            box-shadow: 0 6px 12px rgba(244, 67, 54, 0.4);
         }
         
         .choice-btn.blue {
             background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
-            box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
         }
         
         .choice-btn.blue:hover {
-            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.4);
+            box-shadow: 0 6px 12px rgba(33, 150, 243, 0.4);
         }
         
         /* 步骤说明样式 */
         .steps {
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-            border-left: 5px solid #2196f3;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
         }
         
         .step {
-            margin-bottom: 15px;
-            padding-left: 15px;
-            border-left: 3px solid #4caf50;
-            padding-top: 5px;
-            padding-bottom: 5px;
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 2px solid #4caf50;
+            padding-top: 3px;
+            padding-bottom: 3px;
         }
         
         .step-number {
             display: inline-block;
             background: #4caf50;
             color: white;
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             text-align: center;
-            line-height: 28px;
-            margin-right: 10px;
+            line-height: 24px;
+            margin-right: 8px;
             font-weight: bold;
+            font-size: 0.85rem;
         }
         
         /* 响应式设计 */
-        @media (max-width: 768px) {
-            .container {
-                border-radius: 10px;
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
             }
             
             header {
-                padding: 20px 15px;
+                padding: 30px 20px;
             }
             
             h1 {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
             }
             
             .story-content {
+                padding: 30px;
+            }
+            
+            .story-text {
+                font-size: 1.1rem;
+                margin-bottom: 25px;
                 padding: 20px;
             }
             
             .choices {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 15px;
             }
             
             .choice-btn {
-                padding: 15px;
-                font-size: 1rem;
+                padding: 18px;
+                font-size: 1.1rem;
+                min-height: auto;
+            }
+            
+            .voice-controls {
+                top: 20px;
+                right: 20px;
+                gap: 10px;
+            }
+            
+            .voice-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .progress-container {
+                height: 8px;
+                margin: 20px 0 0;
+            }
+            
+            .steps {
+                padding: 20px;
+                margin: 25px 0;
+            }
+            
+            .step {
+                margin-bottom: 15px;
+                padding-left: 15px;
+            }
+            
+            .step-number {
+                width: 28px;
+                height: 28px;
+                line-height: 28px;
+                margin-right: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .story-text {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+            
+            .choice-btn {
+                font-size: 0.9rem;
+                padding: 12px;
+                min-height: 55px;
             }
             
             .voice-controls {
                 position: static;
                 justify-content: center;
-                margin-top: 15px;
+                margin-top: 12px;
             }
         }
         
@@ -255,25 +328,27 @@
         
         .quote {
             font-style: italic;
-            padding: 15px;
+            padding: 12px;
             background: rgba(255, 255, 255, 0.05);
-            border-left: 4px solid #4caf50;
-            margin: 15px 0;
+            border-left: 3px solid #4caf50;
+            margin: 12px 0;
+            font-size: 0.9rem;
         }
         
         /* 语音播放指示器 */
         .speech-indicator {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 15px;
+            right: 15px;
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 10px 15px;
-            border-radius: 20px;
+            padding: 8px 12px;
+            border-radius: 16px;
             display: none;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             z-index: 100;
+            font-size: 0.85rem;
         }
         
         .speech-indicator.active {
@@ -281,8 +356,8 @@
         }
         
         .pulse {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: #4caf50;
             animation: pulse 1.5s infinite;
@@ -308,16 +383,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin: 15px 0;
+            gap: 8px;
+            margin: 12px 0;
             color: #bbbbbb;
+            font-size: 0.9rem;
         }
         
         .toggle-switch {
             position: relative;
             display: inline-block;
-            width: 50px;
-            height: 24px;
+            width: 45px;
+            height: 22px;
         }
         
         .toggle-switch input {
@@ -335,7 +411,7 @@
             bottom: 0;
             background-color: #ccc;
             transition: .4s;
-            border-radius: 24px;
+            border-radius: 22px;
         }
         
         .slider:before {
@@ -343,8 +419,8 @@
             content: "";
             height: 16px;
             width: 16px;
-            left: 4px;
-            bottom: 4px;
+            left: 3px;
+            bottom: 3px;
             background-color: white;
             transition: .4s;
             border-radius: 50%;
@@ -355,7 +431,48 @@
         }
         
         input:checked + .slider:before {
-            transform: translateX(26px);
+            transform: translateX(23px);
+        }
+        
+        @media (min-width: 768px) {
+            .quote {
+                padding: 15px;
+                margin: 15px 0;
+                font-size: 1rem;
+            }
+            
+            .speech-indicator {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+            
+            .pulse {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .auto-play-toggle {
+                margin: 15px 0;
+                font-size: 1rem;
+            }
+            
+            .toggle-switch {
+                width: 50px;
+                height: 24px;
+            }
+            
+            .slider:before {
+                height: 16px;
+                width: 16px;
+                left: 4px;
+                bottom: 4px;
+            }
+            
+            input:checked + .slider:before {
+                transform: translateX(26px);
+            }
         }
     </style>
 </head>
@@ -363,7 +480,7 @@
     <div class="container">
         <header>
             <h1>卷烟订购新模式 - 价位段自选</h1>
-            <p class="subtitle">智能订货，省时省力</p>
+            <p class="subtitle">指导手册</p>
             
             <div class="voice-controls">
                 <button class="voice-btn" id="playVoice" title="播放语音">
@@ -582,7 +699,7 @@
                 title: "懊恼的结果",
                 content: `
                     <div class="story-text">
-                        <div class="quote" style="text-align: center; color: #f44336; font-size: 1.2rem;">
+                        <div class="quote" style="text-align: center; color: #f44336; font-size: 1.1rem;">
                             传统订货方式效率低下，浪费了大量时间却没有得到满意的结果。
                         </div>
                     </div>
@@ -618,10 +735,10 @@
                 title: "满意收货",
                 content: `
                     <div class="story-text">
-                        <div class="quote" style="text-align: center; color: #4caf50; font-size: 1.2rem;">
+                        <div class="quote" style="text-align: center; color: #4caf50; font-size: 1.1rem;">
                             订货准确送达，都是你需要的规格。
                         </div>
-                        <p style="text-align: center; font-weight: bold; margin-top: 20px;">
+                        <p style="text-align: center; font-weight: bold; margin-top: 15px;">
                             价位段自选让订货变得更简单、更高效！
                         </p>
                     </div>
@@ -688,7 +805,7 @@
             
             const contentElement = document.getElementById('story-content');
             contentElement.innerHTML = `
-                <h2 style="margin-bottom: 20px; color: #4fc3f7; text-align: center;">${scene.title}</h2>
+                <h2 style="margin-bottom: 15px; color: #4fc3f7; text-align: center; font-size: 1.3rem;">${scene.title}</h2>
                 ${scene.content}
                 <div class="auto-play-toggle">
                     <span>自动播放语音</span>
